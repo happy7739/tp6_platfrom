@@ -1,0 +1,25 @@
+stages:
+  - test
+job1:
+  stage: test
+  only:
+    - dev
+  script:
+    - pwd
+    - echo "I am test in dev."
+job2:
+  stage: test
+  only:
+    - qa
+  script:
+    - echo "qa"
+    - rsync -avl ./app/*   root@10.0.1.151:/home/www/wwwroot/TP6platform/app/
+    - rsync -avl ./public/*   root@10.0.1.151:/home/www/wwwroot/TP6platform/public/
+
+job3:
+  stage: test
+  only:
+    - master
+  script:
+    - echo "master"
+
